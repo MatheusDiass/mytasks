@@ -1,0 +1,48 @@
+@use '../abstracts/variables'
+
+.nav
+    background-color: variables.$white-color
+    display: none
+    height: 100%
+    width: 80vw
+    position: absolute
+    z-index: 999
+
+    &__back
+        margin-right: 1rem
+        margin-top: 1rem
+        position: absolute
+        right: 0
+        top: 0
+
+        &:hover
+            cursor: pointer
+
+    &__profile
+        background-color: variables.$gray-color
+        display: flex
+        flex-direction: column
+        padding: 1rem
+
+        &__link
+            margin: .5rem 0
+            text-align: center
+
+        &__image
+            text-align: center
+
+    &__list
+        display: flex
+        flex-direction: column
+        padding: 1rem
+
+        &__item
+            display: flex
+            margin: 1rem 0
+
+            &__link
+                display: flex
+
+                &__text
+                    margin-left: 1rem
+                    padding-top: 4px
