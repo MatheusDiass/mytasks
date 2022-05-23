@@ -1,21 +1,24 @@
-import "./menu.sass";
-import List from "./components/List";
-import { Profiler } from "react";
-import Profile from "./components/Profile";
-import ImageProfile from "../Avatar/ImageProfile"
+//Components
+import MenuProfile from "./components/MenuProfile";
+import MenuList from "./components/MenuList";
 
-function Menu(){
-    
-    return(
-        <header id="header">
-            <nav id="nav">
-            <ImageProfile />      
-            <Profile />
-            <List />   
-            </nav>
-        </header>
-    
-    );
+//Icons
+import Icon from "@mdi/react";
+import { mdiArrowLeftCircleOutline } from '@mdi/js';
+
+//Helpers
+import showNav from "../../helpers/showNav";
+
+function Menu() {
+  return (
+    <nav className="nav">
+      <span className="nav__back" onClick={showNav}>
+        <Icon path={mdiArrowLeftCircleOutline} size={1.3} />
+      </span>
+      <MenuProfile />
+      <MenuList />
+    </nav>
+  );
 }
 
 export default Menu;
