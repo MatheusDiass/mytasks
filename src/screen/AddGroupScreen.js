@@ -1,5 +1,4 @@
-import GroupForm from "../components/GroupForm/GroupForm";
-import "../components/GroupForm/groupform.sass";
+import GroupForm from "../components/Group/GroupForm";
 
 function GroupScreen() {
   return (
