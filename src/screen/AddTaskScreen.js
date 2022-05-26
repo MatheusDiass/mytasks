@@ -1,13 +1,11 @@
 //Components
-
-import TaskForm from "../components/AddTasks/TaskForm";
-
+import TaskForm from "../components/Task/TaskForm";
 
 function TaskScreen() {
   return (
     <div className="TaskScreen">
-      <h1>Adicionar tarefa</h1>
-    
+      <h1>Adicionar Tarefa</h1>
+
       <TaskForm />
     </div>
   );
