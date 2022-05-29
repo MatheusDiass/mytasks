@@ -1,8 +1,9 @@
 import api from "../../api";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../context/GlobalData";
 
 //Hooks
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 //Components
 import Button from "../Buttons/Button";
@@ -11,13 +12,16 @@ import Button from "../Buttons/Button";
 import { setCookie } from "../../helpers/cookieManager";
 
 function LoginForm() {
+  const { LoginStatus } = useContext(Context);
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
 
+  //Faz o login
   async function login() {
     try {
       const { data } = await api.post("/login", user);
       setCookie("user", data);
+      LoginStatus.checkLogin();
       navigate("/addtask");
     } catch (error) {
       console.log(error);
