@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom';
+
 //Icons
-import Icon from "@mdi/react";
-import { mdiHome } from "@mdi/js";
-import { mdiCheckboxMarkedCircleOutline } from "@mdi/js";
-import { mdiPlaylistCheck } from "@mdi/js";
-import { mdiShareVariantOutline } from "@mdi/js";
-import { mdiAccountMultiple } from "@mdi/js";
+import Icon from '@mdi/react';
+import { mdiHome } from '@mdi/js';
+import { mdiCheckboxMarkedCircleOutline } from '@mdi/js';
+import { mdiPlaylistCheck } from '@mdi/js';
+import { mdiShareVariantOutline } from '@mdi/js';
+import { mdiAccountMultiple } from '@mdi/js';
 
 function MenuList() {
   return (
@@ -31,16 +33,16 @@ function MenuList() {
         <ul className="nav__list__item">
           <a href="/" className="nav__list__item__link">
             <Icon path={mdiShareVariantOutline} size={1.3} />
-            <span className="nav__list__item__link__text">
-              Tarefas Compartilhadas
-            </span>
+            <span className="nav__list__item__link__text">Tarefas Compartilhadas</span>
           </a>
         </ul>
         <ul className="nav__list__item">
-          <a href="/" className="nav__list__item__link">
+          <div className="nav__list__item__link">
             <Icon path={mdiAccountMultiple} size={1.3} />
-            <span className="nav__list__item__link__text">Amigos</span>
-          </a>
+            <Link className="nav__list__item__link__text" to="/friends">
+              Amigos
+            </Link>
+          </div>
         </ul>
       </ul>
     </div>

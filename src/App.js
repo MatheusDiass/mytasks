@@ -1,26 +1,20 @@
-import "./assets/sass/app.sass";
+import './assets/sass/app.sass';
 
 //Components
-import { GlobalData } from "./context/GlobalData";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Menu from "./components/Menu/Menu";
+import { GlobalData } from './context/GlobalData';
+import Footer from './components/Footer/Footer';
 
 //Helpers
 //import checkLogin from "./helpers/checkLogin";
 
 //Routes
-import Router from "./router";
+import Router from './router';
 
 function App() {
   return (
     <GlobalData>
       <div className="App">
-        <Menu />
-        <Header />
-        <main>
-          <Router />
-        </main>
+        <Router />
         <Footer />
       </div>
     </GlobalData>

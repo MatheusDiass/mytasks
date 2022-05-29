@@ -20,7 +20,7 @@ function LoginForm() {
   async function login() {
     try {
       const { data } = await api.post("/login", user);
-      setCookie("user", data);
+      setCookie("user", JSON.stringify(data));
       LoginStatus.checkLogin();
       navigate("/addtask");
     } catch (error) {
