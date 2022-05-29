@@ -2,11 +2,11 @@
 import Icon from "@mdi/react";
 import { mdiDeleteOutline } from "@mdi/js";
 
-function CommomCard() {
+function CommomCard({ title, click }) {
   return (
     <div className="card">
-      <p>Test 1</p>
-      <button>
+      <p>{title}</p>
+      <button onClick={click}>
         <Icon path={mdiDeleteOutline} size={1.3} color="#FF0000" />
       </button>
     </div>
