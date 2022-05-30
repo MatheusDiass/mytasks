@@ -44,7 +44,6 @@ function LoginScreen() {
   //Deleta um amigo
   async function deleteFriend(friendId) {
     try {
-      //Deleta um amigo
       await api.delete(`/friends/${user.id}/${friendId}`);
 
       //Busca todos os amigos

@@ -7,8 +7,9 @@ import Header from './components/Header/Header';
 //Screens
 import LoginScreen from './screen/LoginScreen';
 import AddTaskScreen from './screen/AddTaskScreen';
-import AddGroupScreen from './screen/AddGroupScreen';
+import AddGroupScreen from './screen/Group/AddGroupScreen';
 import FriendsScreen from './screen/FriendsScreen';
+import GroupListScreen from './screen/Group/GroupListScreen';
 
 function Router() {
   return (
@@ -17,8 +18,9 @@ function Router() {
       <Header />
       <Routes>
         <Route element={<LoginScreen />} path="/" />
-        <Route element={<AddTaskScreen />} path="addtask" />
-        <Route element={<AddGroupScreen />} path="addgroup" />
+        <Route element={<AddTaskScreen />} path="/addtask" />
+        <Route element={<AddGroupScreen />} path="/addgroup" />
+        <Route element={<GroupListScreen />} path="/groups" />
         <Route element={<FriendsScreen />} path="/friends" />
       </Routes>
     </BrowserRouter>

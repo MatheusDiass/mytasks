@@ -1,4 +1,4 @@
-import GroupForm from "../components/Group/GroupForm";
+import GroupForm from "../../components/Group/GroupForm";
 
 function GroupScreen() {
   return (
