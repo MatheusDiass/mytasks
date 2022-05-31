@@ -10,8 +10,8 @@ import { getCookie } from '../../helpers/cookieManager';
 //Components
 import Button from '../Buttons/Button';
 
-function TaskForm() {
-  const [task, setTasks] = useState({
+function TaskForm({ objTask }) {
+  const [task, setTask] = useState({
     title: '',
     date: '',
     description: '',
@@ -27,6 +27,10 @@ function TaskForm() {
   const user = JSON.parse(getCookie('user'));
 
   useEffect(() => {
+    if (objTask) {
+      setTask(objTask);
+    }
+
     (async () => {
       try {
         //Busca todos os grupos de tarefas
@@ -36,41 +40,46 @@ function TaskForm() {
         console.log(error);
       }
     })();
-  }, [user.id]);
+  }, [user.id, objTask]);
 
   //Adiciona uma tarefa
-  async function addTask() {
+  async function addOrEditTask() {
     try {
-      task.userId = user.id;
-      await api.post('/tasks', task);
-      navigate('/addtask');
+      if (objTask) {
+        await api.put(`/tasks/${objTask._id}`, task);
+        navigate('/tasks');
+      } else {
+        task.userId = user.id;
+        await api.post('/tasks', task);
+        navigate('/tasks');
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
   function handleTitle({ target: { value } }) {
-    setTasks({ ...task, title: value });
+    setTask({ ...task, title: value });
   }
 
   function handleDate({ target: { value } }) {
-    setTasks({ ...task, date: value });
+    setTask({ ...task, date: value });
   }
 
   function handleDescription({ target: { value } }) {
-    setTasks({ ...task, description: value });
+    setTask({ ...task, description: value });
   }
 
   function handleGroup({ target: { value } }) {
-    setTasks({ ...task, group: value });
+    setTask({ ...task, group: value });
   }
 
   function handleShare({ target: { value } }) {
-    setTasks({ ...task, share: value });
+    setTask({ ...task, share: value });
   }
 
   function handleFriends({ target: { value } }) {
-    setTasks({ ...task, friends: value });
+    setTask({ ...task, friends: value });
   }
 
   return (
@@ -89,7 +98,7 @@ function TaskForm() {
         onChange={handleDescription}
       />
 
-      <label for="group">Pertence a lista:</label>
+      <label for="group">Pertence ao grupo:</label>
       <select className="input" value={task.group} onChange={handleGroup}>
         <option value={0}>Selecione uma tarefa</option>
         {groups.map((group) => (
@@ -118,7 +127,7 @@ function TaskForm() {
         onChange={handleFriends}
       />
 
-      <Button text={'Salvar'} click={addTask} />
+      <Button text={'Salvar'} click={addOrEditTask} />
     </form>
   );
 }
