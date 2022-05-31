@@ -34,7 +34,7 @@ function TaskForm({ objTask }) {
     (async () => {
       try {
         //Busca todos os grupos de tarefas
-        const { data } = await api.get(`/groups/${user.id}`);
+        const { data } = await api.get(`/groups/user/${user.id}`);
         setGroups(data);
       } catch (error) {
         console.log(error);
@@ -42,7 +42,7 @@ function TaskForm({ objTask }) {
     })();
   }, [user.id, objTask]);
 
-  //Adiciona uma tarefa
+  //Adiciona uma tarefa ou edita uma tarefa
   async function addOrEditTask() {
     try {
       if (objTask) {
@@ -100,9 +100,9 @@ function TaskForm({ objTask }) {
 
       <label for="group">Pertence ao grupo:</label>
       <select className="input" value={task.group} onChange={handleGroup}>
-        <option value={0}>Selecione uma tarefa</option>
+        <option value={0}>Selecione um grupo</option>
         {groups.map((group) => (
-          <option value={group._id}>{group.name}</option>
+          <option value={group._id} key={group._id}>{group.title}</option>
         ))}
       </select>
 

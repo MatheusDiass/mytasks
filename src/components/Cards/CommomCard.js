@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 //Icons
 import Icon from '@mdi/react';
 import { mdiDeleteOutline } from '@mdi/js';
+import { mdiPencilOutline } from '@mdi/js'; 
 
-function CommomCard({ id, title, click }) {
+function CommomCard({ route, title, click }) {
   return (
     <div className="card">
       <p>{title}</p>
       <div>
         <button>
-          <Link to={`/tasks/${id}`}>
-            <Icon path={mdiDeleteOutline} size={1.3} />
+          <Link to={route}>
+            <Icon path={mdiPencilOutline} size={1.3} />
           </Link>
         </button>
         <button onClick={click}>

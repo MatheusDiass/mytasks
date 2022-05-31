@@ -2,7 +2,7 @@ import GroupForm from "../../components/Group/GroupForm";
 
 function GroupScreen() {
   return (
-    <div>
+    <div className="addGroupScreen">
       <h1>Adicionar Grupo</h1>
 
       <GroupForm />

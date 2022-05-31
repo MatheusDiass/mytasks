@@ -45,7 +45,7 @@ function TaskList() {
       await api.delete(`/tasks/${taskId}`);
 
       //Busca todas as tarefas
-      const { data } = await api.get(`/tasks/${user.id}`);
+      const { data } = await api.get(`/tasks/user/${user.id}`);
       setTasks(data);
       setTasksFilter([]);
     } catch (error) {
@@ -65,7 +65,7 @@ function TaskList() {
             ? tasksFilter.map((task) => (
                 <li className="tasks__list__item" key={task._id}>
                   <CommomCard
-                    id={task._id}
+                    route={`/tasks/${task._id}`}
                     title={task.title}
                     click={() => {
                       deleteTask(task._id);
@@ -76,7 +76,7 @@ function TaskList() {
             : tasks.map((task) => (
                 <li className="tasks__list__item" key={task._id}>
                   <CommomCard
-                    id={task._id}
+                    route={`/tasks/${task._id}`}
                     title={task.title}
                     click={() => {
                       deleteTask(task._id);

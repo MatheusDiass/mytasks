@@ -21,7 +21,7 @@ function GroupListScreen() {
     (async () => {
       try {
         //Busca todos os grupos de tarefas
-        const { data } = await api.get(`/groups/${user.id}`);
+        const { data } = await api.get(`/groups/user/${user.id}`);
         setGroups(data);
       } catch (error) {
         console.log(error);
@@ -32,7 +32,7 @@ function GroupListScreen() {
   //Filtra a lista de grupos de tarefas
   function filter(name) {
     if (name !== '') {
-      const group = groups.filter((group) => group.name.toLowerCase().includes(name.toLowerCase()));
+      const group = groups.filter((group) => group.title.toLowerCase().includes(name.toLowerCase()));
       setGroupsFilter(group);
     } else {
       setGroupsFilter(groups);
@@ -45,7 +45,7 @@ function GroupListScreen() {
       await api.delete(`/groups/${groupId}`);
 
       //Busca todos os grupos de tarefas
-      const { data } = await api.get(`/groups/${user.id}`);
+      const { data } = await api.get(`/groups/user/${user.id}`);
       setGroups(data);
       setGroupsFilter([]);
     } catch (error) {
@@ -65,7 +65,8 @@ function GroupListScreen() {
             ? groupsFilter.map((group) => (
                 <li className="groups__list__item" key={group._id}>
                   <CommomCard
-                    title={group.name}
+                    route={`/groups/${group._id}`}
+                    title={group.title}
                     click={() => {
                       deleteGroup(group._id);
                     }}
@@ -75,7 +76,8 @@ function GroupListScreen() {
             : groups.map((group) => (
                 <li className="groups__list__item" key={group._id}>
                   <CommomCard
-                    title={group.name}
+                    route={`/groups/${group._id}`}
+                    title={group.title}
                     click={() => {
                       deleteGroup(group._id);
                     }}

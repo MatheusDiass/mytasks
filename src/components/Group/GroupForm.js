@@ -10,7 +10,7 @@ import { getCookie } from '../../helpers/cookieManager';
 //Components
 import Button from '../Buttons/Button';
 
-function GroupForm() {
+function GroupForm({ objGroup }) {
   const [group, setGroup] = useState({
     title: '',
     task: '',
@@ -22,23 +22,32 @@ function GroupForm() {
   const user = JSON.parse(getCookie('user'));
 
   useEffect(() => {
+    if (objGroup) {
+      setGroup(objGroup);
+    }
+
     (async () => {
       try {
-        //Busca todos os grupos de tarefas
+        //Busca todas as tarefas
         const { data } = await api.get(`/tasks/user/${user.id}`);
         setTasks(data);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [user.id]);
+  }, [user.id, objGroup]);
 
-  //Adiciona uma tarefa
-  async function addGroup() {
+  //Adiciona uma tarefa ou edita uma tarefa
+  async function addOrEditGroup() {
     try {
-      group.userId = user.id;
-      await api.post('/groups', group);
-      navigate('/groups');
+      if (objGroup) {
+        await api.put(`/groups/${objGroup._id}`, group);
+        navigate('/groups');
+      } else {
+        group.userId = user.id;
+        await api.post('/groups', group);
+        navigate('/groups');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +76,7 @@ function GroupForm() {
         ))}
       </select>
 
-      <Button text={'Salvar'} click={addGroup} />
+      <Button text={'Salvar'} click={addOrEditGroup} />
     </form>
   );
 }
