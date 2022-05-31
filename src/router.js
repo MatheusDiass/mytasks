@@ -10,8 +10,9 @@ import AddTaskScreen from './screen/Task/AddTaskScreen';
 import TaskListScreen from './screen/Task/TaskListScreen';
 import EditTaskScreen from './screen/Task/EditTaskScreen';
 import AddGroupScreen from './screen/Group/AddGroupScreen';
-import FriendsScreen from './screen/FriendsScreen';
+import EditGroupScreen from './screen/Group/EditGroupScreen';
 import GroupListScreen from './screen/Group/GroupListScreen';
+import FriendsScreen from './screen/FriendsScreen';
 
 function Router() {
   return (
@@ -22,9 +23,10 @@ function Router() {
         <Route element={<LoginScreen />} path="/" />
         <Route element={<AddTaskScreen />} path="/addtask" />
         <Route element={<TaskListScreen />} path="/tasks" />
-        <Route element={<EditTaskScreen />} path="/tasks/:id"/>
+        <Route element={<EditTaskScreen />} path="/tasks/:id" />
         <Route element={<AddGroupScreen />} path="/addgroup" />
         <Route element={<GroupListScreen />} path="/groups" />
+        <Route element={<EditGroupScreen />} path="/groups/:id" />
         <Route element={<FriendsScreen />} path="/friends" />
       </Routes>
     </BrowserRouter>

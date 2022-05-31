@@ -29,7 +29,7 @@ function EditTaskScreen() {
     <div className="editTaskScreen">
       <h1>Editar Tarefa</h1>
 
-      <TaskForm aa={task} />
+      <TaskForm objTask={task} />
     </div>
   );
 }
