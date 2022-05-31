@@ -11,10 +11,10 @@ import Search from '../../components/Search/Search';
 import CommomCard from '../../components/Cards/CommomCard';
 
 function TaskList() {
-    const [tasks, setTasks] = useState([]);
-    const [tasksFilter, setTasksFilter] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [tasksFilter, setTasksFilter] = useState([]);
 
-      //User - Cookie
+  //User - Cookie
   const user = JSON.parse(getCookie('user'));
 
   useEffect(() => {
@@ -29,22 +29,22 @@ function TaskList() {
     })();
   }, [user.id]);
 
-  //Filtra a lista de grupos de tarefas
+  //Filtra a lista de tarefas
   function filter(name) {
     if (name !== '') {
-      const task = tasks.filter((task) => task.name.toLowerCase().includes(name.toLowerCase()));
+      const task = tasks.filter((task) => task.title.toLowerCase().includes(name.toLowerCase()));
       setTasksFilter(task);
     } else {
       setTasksFilter(tasks);
     }
   }
 
-  //Deleta um grupo de tarefas
+  //Deleta uma tarefa
   async function deleteTask(taskId) {
     try {
       await api.delete(`/tasks/${taskId}`);
 
-      //Busca todos os grupos de tarefas
+      //Busca todas as tarefas
       const { data } = await api.get(`/tasks/${user.id}`);
       setTasks(data);
       setTasksFilter([]);
@@ -54,18 +54,18 @@ function TaskList() {
   }
 
   return (
-    <div className='taskScreen'>
+    <div className="taskScreen">
       <h1>Grupos de Tarefas</h1>
 
       <Search search={filter} />
 
-      <div className='tasks'>
-        <ul className='tasks__list'>
+      <div className="tasks">
+        <ul className="tasks__list">
           {tasksFilter.length > 0
             ? tasksFilter.map((task) => (
                 <li className="tasks__list__item" key={task._id}>
                   <CommomCard
-                    title={task.name}
+                    title={task.title}
                     click={() => {
                       deleteTask(task._id);
                     }}
@@ -73,9 +73,9 @@ function TaskList() {
                 </li>
               ))
             : tasks.map((task) => (
-                <li className="task__list__item" key={task._id}>
+                <li className="tasks__list__item" key={task._id}>
                   <CommomCard
-                    title={task.name}
+                    title={task.title}
                     click={() => {
                       deleteTask(task._id);
                     }}
