@@ -19,16 +19,20 @@ function MenuList() {
           </a>
         </ul>
         <ul className="nav__list__item">
-          <a href="/" className="nav__list__item__link">
+          <div href="/" className="nav__list__item__link">
             <Icon path={mdiCheckboxMarkedCircleOutline} size={1.3} />
-            <span className="nav__list__item__link__text">Minhas Tarefas</span>
-          </a>
+            <Link className="nav__list__item__link__text" to="/tasks">
+              Minhas Tarefas
+            </Link>
+          </div>
         </ul>
         <ul className="nav__list__item">
-          <a href="/" className="nav__list__item__link">
+          <div href="/" className="nav__list__item__link">
             <Icon path={mdiPlaylistCheck} size={1.3} />
-            <span className="nav__list__item__link__text">Lista de Tarefas</span>
-          </a>
+            <Link className="nav__list__item__link__text" to="/groups">
+              Grupo de Tarefas
+            </Link>
+          </div>
         </ul>
         <ul className="nav__list__item">
           <a href="/" className="nav__list__item__link">
