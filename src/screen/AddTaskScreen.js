@@ -3,7 +3,7 @@ import TaskForm from "../components/Task/TaskForm";
 
 function TaskScreen() {
   return (
-    <div className="TaskScreen">
+    <div className="addTaskScreen">
       <h1>Adicionar Tarefa</h1>
 
       <TaskForm />
