@@ -1,0 +1,42 @@
+{
+  "name": "mytasks",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Project to manage tasks",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.2.2",
+    "commitizen": "^4.3.0",
+    "commitlint": "^19.4.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.11",
+    "husky": "^9.1.5",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusDiass/mytasks.git"
+  },
+  "author": "Matheus Dias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusDiass/mytasks/issues"
+  },
+  "homepage": "https://github.com/MatheusDiass/mytasks#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
