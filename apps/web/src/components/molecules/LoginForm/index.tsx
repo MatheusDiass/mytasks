@@ -3,9 +3,9 @@ import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { FaEyeSlash } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
-import { Input } from '../../Atoms/Input';
-import { Icon } from '../../Atoms/Icon';
-import { Button } from '../../Atoms/Button';
+import { Input } from '../../atoms/Input';
+import { Icon } from '../../atoms/Icon';
+import { Button } from '../../atoms/Button';
 import { PasswordInput, Props } from './types';
 import * as S from './styles';
 
