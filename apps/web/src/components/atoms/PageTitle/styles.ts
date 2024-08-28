@@ -5,5 +5,6 @@ export const PageTitle = styled.p`
     color: ${theme.colors.textPrimary};
     font-size: ${theme.typography.sizes.xl};
     margin-bottom: ${theme.spacing.xl};
+    font-weight: 500;
   `}
 `;
