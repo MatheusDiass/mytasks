@@ -1,0 +1,9 @@
+[build]
+cmd = "go run ./cmd/main.go" 
+bin = "tmp/main"
+delay = 1000
+include_ext = ["go"]
+exclude_dir = ["tmp"]
+
+[log]
+color = "always"
