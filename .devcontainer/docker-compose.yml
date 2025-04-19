@@ -13,19 +13,51 @@ services:
     networks:
       - mytasks_network
 
+  queue:
+    image: rabbitmq:4.1-management-alpine
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=mytasks
+      - RABBITMQ_DEFAULT_PASS=mytasks@2025
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_lib:/var/lib/rabbitmq
+      - rabbitmq_log:/var/log/rabbitmq
+    depends_on:
+      - db
+    networks:
+      - mytasks_network
+
   task-service:
     build:
       context: ../apps/task-service
       dockerfile: dockerfile
     ports:
       - "8000:8000"
+    volumes:
+      - ..:/workspace:cached
     depends_on:
       - db
+      - queue
+    networks:
+      - mytasks_network
+
+  notification-service:
+    build:
+      context: ../apps/notification-service
+      dockerfile: dockerfile
+    depends_on:
+      - db
+      - queue
     networks:
       - mytasks_network
 
 volumes:
   pgdata:
+  rabbitmq_lib:
+  rabbitmq_log:
 
 networks:
   mytasks_network:
