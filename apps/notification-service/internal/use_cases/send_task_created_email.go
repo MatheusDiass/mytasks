@@ -3,12 +3,13 @@ package usecases
 import (
 	"fmt"
 	"notification-service/internal/domain"
+	"time"
 )
 
 type Input struct {
-	To    string `json:"to"`
-	Title string `json:"title"`
-	EndAt string `json:"endAt"`
+	To      string    `json:"to"`
+	Title   string    `json:"title"`
+	DueDate time.Time `json:"dueDate"`
 }
 
 type SendTaskCreatedEmailUseCase struct {
@@ -26,10 +27,10 @@ func (uc *SendTaskCreatedEmailUseCase) Execute(input Input) error {
 			<body>
 				<h2>Task Created</h2>
 				<p>Title: %s</p>
-				<p>End at: %s</p>
+				<p>Due date: %s</p>
 			</body>
 		</html>
-	`, input.Title, input.EndAt)
+	`, input.Title, input.DueDate.Format("02/01/2006 15:04:05"))
 
 	return uc.emailService.Send(input.To, subject, body)
 }

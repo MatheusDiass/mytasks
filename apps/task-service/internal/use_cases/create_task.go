@@ -1,28 +1,57 @@
 package usecases
 
 import (
-	"task-service/internal/domain"
-	"task-service/internal/infra"
+	"encoding/json"
+	"task-service/internal/domain/entities"
+	"task-service/internal/domain/interfaces"
+	"task-service/internal/dtos"
+	"time"
 )
 
 type Input struct {
 	Title       string
 	Description string
+	DueDate     time.Time
 }
 
 type CreateTaskUseCase struct {
-	repo infra.CreateTaskRepository
+	createTaskRepo interfaces.CreateTaskRepo
+	queue          interfaces.QueuePublish
 }
 
-func NewCreateTaskUseCase(repo infra.CreateTaskRepository) *CreateTaskUseCase {
-	return &CreateTaskUseCase{repo: repo}
+func NewCreateTaskUseCase(createTaskRepo interfaces.CreateTaskRepo, queue interfaces.QueuePublish) *CreateTaskUseCase {
+	return &CreateTaskUseCase{createTaskRepo: createTaskRepo, queue: queue}
 }
 
 func (uc CreateTaskUseCase) Execute(input Input) error {
-	task := domain.Task{
-		Title:       input.Title,
-		Description: input.Description,
+	task, err := entities.NewTask(input.Title, input.Description, input.DueDate)
+
+	if err != nil {
+		return err
 	}
 
-	return uc.repo.Create(task)
+	taskCreated, err := uc.createTaskRepo.Execute(task)
+
+	if err != nil {
+		return err
+	}
+
+	taskCreatedMessage := dtos.TaskCreatedMessage{
+		Type: "task_created",
+		Data: dtos.TaskMessage{
+			To:      "dias.math0@gmail.com",
+			Title:   taskCreated.Title,
+			DueDate: task.DueDate.Format(time.RFC3339),
+		},
+	}
+
+	serializedTask, err := json.Marshal(taskCreatedMessage)
+
+	if err != nil {
+		return err
+	}
+
+	err = uc.queue.Publish("email_notification", serializedTask)
+
+	return err
 }

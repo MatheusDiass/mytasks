@@ -3,13 +3,15 @@ package controllers
 import (
 	"net/http"
 	usecases "task-service/internal/use_cases"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Request struct {
-	Title       string `json:"title" binding:"required"`
-	Description string `json:"description" binding:"required"`
+	Title       string    `json:"title" binding:"required"`
+	Description string    `json:"description" binding:"required"`
+	DueDate     time.Time `json:"dueDate" binding:"required"`
 }
 
 type CreateTaskController struct {
@@ -31,6 +33,7 @@ func (c *CreateTaskController) Handle(ctx *gin.Context) {
 	input := usecases.Input{
 		Title:       req.Title,
 		Description: req.Description,
+		DueDate:     req.DueDate,
 	}
 
 	err := c.useCase.Execute(input)
