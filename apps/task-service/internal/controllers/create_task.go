@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"net/http"
-	usecases "task-service/internal/use_cases"
+	usecases "task-service/internal/app/use_cases"
 	"time"
 
 	"github.com/gin-gonic/gin"
