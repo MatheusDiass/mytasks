@@ -2,9 +2,9 @@ package usecases
 
 import (
 	"encoding/json"
+	"task-service/internal/app/dtos"
 	"task-service/internal/domain/entities"
 	"task-service/internal/domain/interfaces"
-	"task-service/internal/dtos"
 	"time"
 )
 

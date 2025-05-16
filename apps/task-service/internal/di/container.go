@@ -2,9 +2,9 @@ package di
 
 import (
 	"task-service/internal/adapters/db/repos"
+	usecases "task-service/internal/app/use_cases"
 	"task-service/internal/controllers"
 	"task-service/internal/domain/interfaces"
-	usecases "task-service/internal/use_cases"
 
 	"github.com/jmoiron/sqlx"
 )
