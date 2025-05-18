@@ -1,0 +1,24 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "description": "Service used for authentication in mytasks project",
+  "main": "app.ts",
+  "scripts": {
+    "dev": "tsnd --respawn app.ts",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "@repo/eslint-config": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusDiass/mytasks.git"
+  },
+  "author": "Matheus Dias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusDiass/mytasks/issues"
+  },
+  "homepage": "https://github.com/MatheusDiass/mytasks#readme"
+}
