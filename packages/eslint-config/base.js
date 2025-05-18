@@ -1,5 +1,6 @@
 import js from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
+import pluginPrettier from 'eslint-plugin-prettier/recommended';
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
 import onlyWarn from "eslint-plugin-only-warn";
@@ -11,7 +12,6 @@ import onlyWarn from "eslint-plugin-only-warn";
  * */
 export const config = [
   js.configs.recommended,
-  eslintConfigPrettier,
   ...tseslint.configs.recommended,
   {
     plugins: {
@@ -29,4 +29,6 @@ export const config = [
   {
     ignores: ["dist/**"],
   },
+  pluginPrettier,
+  eslintConfigPrettier,
 ];
