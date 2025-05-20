@@ -4,7 +4,7 @@
   "description": "Service used for authentication in mytasks project",
   "main": "app.ts",
   "scripts": {
-    "dev": "tsnd --respawn app.ts",
+    "dev": "tsnd --respawn -r tsconfig-paths/register --env-file=.env app.ts",
     "test": "vitest"
   },
   "devDependencies": {
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/MatheusDiass/mytasks/issues"
   },
-  "homepage": "https://github.com/MatheusDiass/mytasks#readme"
+  "homepage": "https://github.com/MatheusDiass/mytasks#readme",
+  "_moduleAliases": {
+    "@": "dist/src"
+  }
 }
