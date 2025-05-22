@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-type Input struct {
+type CreateTaskInput struct {
 	Title       string
 	Description string
 	DueDate     time.Time
@@ -23,7 +23,7 @@ func NewCreateTaskUseCase(createTaskRepo interfaces.CreateTaskRepo, queue interf
 	return &CreateTaskUseCase{createTaskRepo: createTaskRepo, queue: queue}
 }
 
-func (uc CreateTaskUseCase) Execute(input Input) error {
+func (uc CreateTaskUseCase) Execute(input CreateTaskInput) error {
 	task, err := entities.NewTask(input.Title, input.Description, input.DueDate)
 
 	if err != nil {

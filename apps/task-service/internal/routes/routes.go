@@ -10,4 +10,5 @@ const prefix string = "/api/v1/tasks"
 
 func RegisterRoutes(router *gin.Engine, container *di.Container) {
 	router.POST(prefix, container.CreateTaskController.Handle)
+	router.GET(prefix, container.FetchTasksController.Handle)
 }

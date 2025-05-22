@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Request struct {
+type CreateTasksRequest struct {
 	Title       string    `json:"title" binding:"required"`
 	Description string    `json:"description" binding:"required"`
 	DueDate     time.Time `json:"dueDate" binding:"required"`
@@ -23,14 +23,14 @@ func NewCreateTaskController(useCase usecases.CreateTaskUseCase) *CreateTaskCont
 }
 
 func (c *CreateTaskController) Handle(ctx *gin.Context) {
-	var req Request
+	var req CreateTasksRequest
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	input := usecases.Input{
+	input := usecases.CreateTaskInput{
 		Title:       req.Title,
 		Description: req.Description,
 		DueDate:     req.DueDate,
