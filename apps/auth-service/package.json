@@ -8,8 +8,10 @@
     "test": "vitest"
   },
   "devDependencies": {
+    "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@repo/eslint-config": "*"
+    "@types/amqplib": "^0.10.7",
+    "vitest": "^3.1.4"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,8 @@
   "homepage": "https://github.com/MatheusDiass/mytasks#readme",
   "_moduleAliases": {
     "@": "dist/src"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.8"
   }
 }

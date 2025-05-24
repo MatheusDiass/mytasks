@@ -1,6 +1,6 @@
 import 'module-alias/register';
 
-import { HttpServer } from '@/adapters/http-server';
+import { HttpServer } from '@/adapters/http';
 
 (async (): Promise<void> => {
   const httpServer = new HttpServer();
