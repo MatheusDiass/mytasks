@@ -1,6 +1,9 @@
 export type Props = {
+  id?: string;
   name: string;
-  dateBirth: Date;
+  dateBirth: string;
   email: string;
   password: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 };

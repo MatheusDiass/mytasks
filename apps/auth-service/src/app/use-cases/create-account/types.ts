@@ -1,6 +1,6 @@
 export type Input = {
   name: string;
-  dateBirth: Date;
+  dateBirth: string;
   email: string;
   password: string;
 };
