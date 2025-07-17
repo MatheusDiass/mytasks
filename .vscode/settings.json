@@ -1,4 +1,13 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+    }
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  }
 }

@@ -29,6 +29,14 @@ export const config = [
   {
     ignores: ["dist/**"],
   },
+  {
+    globals: {
+      describe: "readonly",
+      it: "readonly",
+      expect: "readonly",
+      beforeEach: "readonly",
+    },
+  },
   pluginPrettier,
   eslintConfigPrettier,
 ];

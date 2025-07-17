@@ -2,6 +2,7 @@ import Fastify, { FastifyInstance } from 'fastify';
 import { IHttpServer } from './http-server.interface';
 import { apiConfig } from '@/config/config';
 import { Route } from './http-server.types';
+import { errorHandlingMiddleware } from './middlewares';
 
 export class HttpServer implements IHttpServer {
   private server: FastifyInstance;
@@ -17,6 +18,8 @@ export class HttpServer implements IHttpServer {
       message: '🚀 Auth service is running!',
     }));
 
+    this.server.setErrorHandler(errorHandlingMiddleware);
+
     try {
       await this.server.listen({
         port: apiConfig.port,
@@ -30,8 +33,8 @@ export class HttpServer implements IHttpServer {
   registerRoute(route: Route): void {
     this.server.route({
       method: route.method,
-      url: route.url,
-      handler: () => {},
+      url: `/api/v1/${route.url}`,
+      handler: route.handler,
     });
   }
 }

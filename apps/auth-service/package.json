@@ -5,11 +5,16 @@
   "main": "app.ts",
   "scripts": {
     "dev": "tsnd --respawn -r tsconfig-paths/register --env-file=.env app.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "prisma:generate": "prisma generate --schema=src/infra/db/prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema=src/infra/db/prisma/schema.prisma"
   },
   "devDependencies": {
+    "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@repo/eslint-config": "*"
+    "@types/amqplib": "^0.10.7",
+    "prisma": "^6.8.2",
+    "vitest": "^3.1.4"
   },
   "repository": {
     "type": "git",
@@ -23,5 +28,9 @@
   "homepage": "https://github.com/MatheusDiass/mytasks#readme",
   "_moduleAliases": {
     "@": "dist/src"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "amqplib": "^0.10.8"
   }
 }
