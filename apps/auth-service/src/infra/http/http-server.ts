@@ -2,6 +2,7 @@ import Fastify, { FastifyInstance } from 'fastify';
 import { IHttpServer } from './http-server.interface';
 import { apiConfig } from '@/config/config';
 import { Route } from './http-server.types';
+import { errorHandlingMiddleware } from './middlewares';
 
 export class HttpServer implements IHttpServer {
   private server: FastifyInstance;
@@ -16,6 +17,8 @@ export class HttpServer implements IHttpServer {
     this.server.get('/', async () => ({
       message: '🚀 Auth service is running!',
     }));
+
+    this.server.setErrorHandler(errorHandlingMiddleware);
 
     try {
       await this.server.listen({

@@ -4,7 +4,7 @@ import {
 } from '@/domain/interfaces';
 import { prisma } from '../database-client';
 
-export class CreateConfirmationCodeRepository
+export class CreateConfirmationCodeRepo
   implements ICreateConfirmationCodeRepository
 {
   async execute(input: CreateConfirmationCodeInput): Promise<void> {

@@ -1,7 +1,7 @@
 import { ICheckEmailExistsRepository } from '@/domain/interfaces';
 import { prisma } from '../database-client';
 
-export class CheckEmailExistsRepository implements ICheckEmailExistsRepository {
+export class CheckEmailExistsRepo implements ICheckEmailExistsRepository {
   async execute(email: string): Promise<boolean> {
     const user = await prisma.user.findUnique({
       where: { email },

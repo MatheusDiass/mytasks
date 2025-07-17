@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { AuthUser } from './auth-user';
 import {
   InvalidDateBirthError,

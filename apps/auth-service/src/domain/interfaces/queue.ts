@@ -1,3 +1,9 @@
+export type PublishInput<T> = {
+  exchangeName: string;
+  routingKey: string;
+  data: T;
+};
+
 export interface IQueue {
-  publish<T>(queue: string, data: T): Promise<void>;
+  publish<T>(input: PublishInput<T>): Promise<void>;
 }

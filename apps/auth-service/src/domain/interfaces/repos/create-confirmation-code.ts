@@ -7,6 +7,6 @@ export type CreateConfirmationCodeInput = {
   expiresAt: Date;
 };
 
-export interface ICreateConfirmationCodeRepository {
+export interface ICreateConfirmationCodeRepo {
   execute(input: CreateConfirmationCodeInput): Promise<void>;
 }

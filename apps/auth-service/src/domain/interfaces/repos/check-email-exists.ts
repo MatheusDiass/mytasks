@@ -1,3 +1,3 @@
-export interface ICheckEmailExistsRepository {
+export interface ICheckEmailExistsRepo {
   execute(email: string): Promise<boolean>;
 }

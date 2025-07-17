@@ -19,11 +19,11 @@ enum ConfirmationType {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid(7)) @db.Uuid
   email     String   @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
 
   confirmationCodes ConfirmationCode[]
 
@@ -31,13 +31,13 @@ model User {
 }
 
 model ConfirmationCode {
-  id        String   @id @default(cuid())
-  userId    String
-  code      String   @unique
+  id        String   @id @default(uuid(7)) @db.Uuid
+  userId    String   @db.Uuid
+  code      String   @unique @db.Char(6)
   type      ConfirmationType
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  expiresAt DateTime @map("expires_at") @db.Timestamptz()
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
 
   user User @relation(fields: [userId], references: [id])
 

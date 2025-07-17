@@ -1,4 +1,4 @@
-import { IController } from '@/adapters/interfaces';
+import { IController } from '@/infra/interfaces';
 import { CreateAccountUseCase, Input } from '@/app/use-cases/create-account';
 
 export class CreateAccountController implements IController<Input, void> {
