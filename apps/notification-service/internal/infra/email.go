@@ -1,4 +1,4 @@
-package adapters
+package infra
 
 import (
 	"gopkg.in/gomail.v2"

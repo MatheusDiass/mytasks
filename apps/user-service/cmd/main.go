@@ -25,7 +25,7 @@ func main() {
 	}
 
 	queueAdapter := queue.NewQueue(appConfig.QueueUrl)
-	err = queueAdapter.SetupQueue("user.creation",
+	err = queueAdapter.SetupQueue("user_account_creation",
 		"user.exchange",
 		"user.created")
 	if err != nil {
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	createUserUseCase := factories.NewCreateUserFactory(db)
-	queueAdapter.Consumer("user.creation", func(msg []byte) {
+	queueAdapter.Consumer("user_account_creation", func(msg []byte) {
 		var input usecases.CreateUserInput
 
 		if err := json.Unmarshal(msg, &input); err != nil {
@@ -41,7 +41,6 @@ func main() {
 			return
 		}
 
-		fmt.Printf("Received message: %v\n", input)
 		if err := createUserUseCase.Execute(input); err != nil {
 			log.Printf("Error executing use case: %v", err)
 		}

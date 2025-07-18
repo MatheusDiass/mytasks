@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-type Input struct {
+type SendTaskCreatedEmailInput struct {
 	To      string    `json:"to"`
 	Title   string    `json:"title"`
 	DueDate time.Time `json:"dueDate"`
@@ -20,7 +20,7 @@ func NewSendTaskCreatedEmailUseCase(emailService domain.EmailService) *SendTaskC
 	return &SendTaskCreatedEmailUseCase{emailService}
 }
 
-func (uc *SendTaskCreatedEmailUseCase) Execute(input Input) error {
+func (uc *SendTaskCreatedEmailUseCase) Execute(input SendTaskCreatedEmailInput) error {
 	subject := "Task Created"
 	body := fmt.Sprintf(`
 		<html>

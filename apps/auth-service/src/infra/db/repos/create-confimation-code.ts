@@ -1,12 +1,10 @@
 import {
   CreateConfirmationCodeInput,
-  ICreateConfirmationCodeRepository,
+  ICreateConfirmationCodeRepo,
 } from '@/domain/interfaces';
 import { prisma } from '../database-client';
 
-export class CreateConfirmationCodeRepo
-  implements ICreateConfirmationCodeRepository
-{
+export class CreateConfirmationCodeRepo implements ICreateConfirmationCodeRepo {
   async execute(input: CreateConfirmationCodeInput): Promise<void> {
     await prisma.confirmationCode.create({
       data: {

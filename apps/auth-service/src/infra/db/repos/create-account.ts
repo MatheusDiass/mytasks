@@ -1,8 +1,8 @@
-import { ICreateAccountRepository } from '@/domain/interfaces';
+import { ICreateAccountRepo } from '@/domain/interfaces';
 import { prisma } from '../database-client';
 import { AuthUser } from '@/domain/entities';
 
-export class CreateAccountRepo implements ICreateAccountRepository {
+export class CreateAccountRepo implements ICreateAccountRepo {
   async execute(user: AuthUser): Promise<string> {
     const accountCreated = await prisma.user.create({
       data: {

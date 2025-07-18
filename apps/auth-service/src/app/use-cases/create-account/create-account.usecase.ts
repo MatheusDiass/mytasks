@@ -58,7 +58,8 @@ export class CreateAccountUseCase implements IExecutable<Input, void> {
       routingKey: 'notification.user.created',
       data: {
         userName: authUser.name,
-        activateCode: code,
+        userEmail: authUser.email,
+        confirmationCode: code,
       },
     });
   }
