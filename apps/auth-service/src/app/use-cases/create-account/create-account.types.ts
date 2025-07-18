@@ -7,7 +7,8 @@ export type Input = {
 
 export type NotificationQueueInput = {
   userName: string;
-  activateCode: string;
+  userEmail: string;
+  confirmationCode: string;
 };
 
 export type UserQueueInput = {
