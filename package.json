@@ -9,6 +9,7 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "@types/node": "^24.0.15",
     "prettier": "^3.5.3",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
