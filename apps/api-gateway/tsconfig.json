@@ -1,0 +1,13 @@
+{
+  "extends": "@repo/typescript-config/api.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
+  },
+  "include": ["src/**/*", "app.ts", "eslint.config.mjs"]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "description": "API Gateway to connect microservice and provide resources to frontend apps",
+  "main": "app.ts",
+  "scripts": {
+    "dev": "tsnd --respawn -r tsconfig-paths/register --env-file=.env app.ts",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusDiass/mytasks.git"
+  },
+  "author": "Matheus Dias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusDiass/mytasks/issues"
+  },
+  "homepage": "https://github.com/MatheusDiass/mytasks#readme",
+  "_moduleAliases": {
+    "@": "dist/src"
+  },
+  "dependencies": {
+    "apollo-server": "^3.13.0",
+    "axios": "^1.10.0",
+    "graphql": "^16.11.0",
+    "reflect-metadata": "^0.2.2",
+    "type-graphql": "^2.0.0-rc.2"
+  }
+}
