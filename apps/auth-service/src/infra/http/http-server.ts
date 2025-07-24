@@ -33,7 +33,7 @@ export class HttpServer implements IHttpServer {
   registerRoute(route: Route): void {
     this.server.route({
       method: route.method,
-      url: `/api/v1/${route.url}`,
+      url: `/api/${route.url}`,
       handler: route.handler,
     });
   }

@@ -1,7 +1,16 @@
 import { Field, InputType } from 'type-graphql';
 
 @InputType()
-export class AuthData {
+export class AccountData {
   @Field(() => String)
-  private readonly name: string;
+  readonly name: string;
+
+  @Field(() => String)
+  readonly dateBirth: string;
+
+  @Field(() => String)
+  readonly email: string;
+
+  @Field(() => String)
+  readonly password: string;
 }
