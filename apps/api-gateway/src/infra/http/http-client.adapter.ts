@@ -2,7 +2,9 @@ import axios, { AxiosInstance } from 'axios';
 import { IHttpClient } from './http-client.interface';
 import { apiGatewayConfig } from '../../config/config';
 
-const serviceURLs: Record<string, string> = {
+type ServiceName = 'auth' | 'user' | 'task';
+
+const serviceURLs: Record<ServiceName, string> = {
   auth: apiGatewayConfig.serviceURLs.auth,
   user: apiGatewayConfig.serviceURLs.user,
   task: apiGatewayConfig.serviceURLs.task,
@@ -20,9 +22,9 @@ export class HttpClient implements IHttpClient {
     return HttpClient._instance;
   }
 
-  private getClient(serviceName: string): AxiosInstance {
+  private getClient(serviceName: ServiceName): AxiosInstance {
     return axios.create({
-      baseURL: serviceURLs[serviceName],
+      baseURL: `${serviceURLs[serviceName]}/api`,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
@@ -30,20 +32,20 @@ export class HttpClient implements IHttpClient {
     });
   }
 
-  async post<D, R>(serviceName: string, url: string, data: D): Promise<R> {
+  async post<D, R>(serviceName: ServiceName, url: string, data: D): Promise<R> {
     const client = this.getClient(serviceName);
     const res = await client.post(url, data);
     return res.data;
   }
 
-  async get<R, D>(serviceName: string, url: string): Promise<R> {
+  async get<R, D>(serviceName: ServiceName, url: string): Promise<R> {
     const client = this.getClient(serviceName);
     const res = await client.get<R>(url);
     return res.data;
   }
 
   async put<D, R>(
-    serviceName: string,
+    serviceName: ServiceName,
     url: string,
     data: D,
     config?: object
@@ -53,7 +55,7 @@ export class HttpClient implements IHttpClient {
     return res.data;
   }
 
-  async delete<R>(serviceName: string, url: string): Promise<R> {
+  async delete<R>(serviceName: ServiceName, url: string): Promise<R> {
     const client = this.getClient(serviceName);
     const res = await client.delete(url);
     return res.data;

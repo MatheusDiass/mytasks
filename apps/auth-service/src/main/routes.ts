@@ -4,7 +4,7 @@ import { CreateAccountFactory } from './factories';
 
 export const routes: Route[] = [
   {
-    url: 'create-account',
+    url: 'accounts',
     method: 'post',
     handler: async (req, _): Promise<void> => {
       await (await CreateAccountFactory.create()).handle(req.body as Input);
