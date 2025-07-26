@@ -1,0 +1,3 @@
+mutation CreateAccount($data: AccountData!) {
+  createAccount(data: $data)
+}
