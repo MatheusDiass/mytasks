@@ -2,11 +2,11 @@
 import { Input } from '@/components/Input';
 import { Button } from '@/components/Button';
 import { SocialMediaOptions } from '@/components/SocialMediaOptions';
+import UserSvg from '@/assets/icons/user.svg';
 import EmailSvg from '@/assets/icons/email.svg';
 import PasswordSvg from '@/assets/icons/password.svg';
-import Link from 'next/link';
 
-export default function Login() {
+export default function Register() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <div className="w-[24rem] sm:w-[30rem] flex flex-col items-center justify-center p-10 border-brand-300 border-1 rounded-lg ">
@@ -20,31 +20,27 @@ export default function Login() {
         <p className="mb-15 text-text-muted">
           <strong>Management App</strong>
         </p>
-        <p className="mb-5">Login to your account</p>
+        <p className="mb-5">Create your account</p>
+
+        <Input placeholder="Username" Icon={UserSvg} />
+
+        <br />
 
         <Input placeholder="Email" Icon={EmailSvg} />
 
         <br />
 
         <Input placeholder="Password" isPassword Icon={PasswordSvg} />
-        <div className="w-full">
-          <Link href="/login" className="text-brand-300 text-xs float-right">
-            Forgot Password?
-          </Link>
-        </div>
 
         <br />
 
-        <Button text="Login" />
+        <Input placeholder="Confirm Password" isPassword Icon={PasswordSvg} />
 
-        <SocialMediaOptions label="Or Login with" />
+        <br />
 
-        <div className="mt-5">
-          <span>Dont have an account?</span>
-          <Link href="/register" className="text-brand ml-1">
-            Sign Up
-          </Link>
-        </div>
+        <Button text="Register" />
+
+        <SocialMediaOptions label="Or Register with" />
       </div>
     </div>
   );
