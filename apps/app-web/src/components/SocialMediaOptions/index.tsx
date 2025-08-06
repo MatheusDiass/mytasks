@@ -1,14 +1,16 @@
+import { FC } from 'react';
 import LineSvg from '@/assets/icons/line.svg';
 import GoogleSvg from '@/assets/icons/google.svg';
 import FacebookSvg from '@/assets/icons/facebook.svg';
 import TwitterSvg from '@/assets/icons/twitter.svg';
+import { SocialMediaOptionProps } from './types';
 
-export const SocialMediaOptions = () => {
+export const SocialMediaOptions: FC<SocialMediaOptionProps> = (props) => {
   return (
     <div>
       <p className="mt-5 mb-5 flex items-center justify-center">
         <LineSvg />
-        <span className="ml-2 mr-2">Or Login with</span>
+        <span className="ml-2 mr-2">{props.label}</span>
         <LineSvg />
       </p>
 

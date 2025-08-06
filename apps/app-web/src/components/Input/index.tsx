@@ -17,7 +17,7 @@ export const Input: FC<InputProps> = ({ Icon, placeholder, isPassword }) => {
   return (
     <div className="flex items-center w-full">
       {Icon && (
-        <div className="bg-brand p-[1.12rem] rounded-l-lg">
+        <div className="bg-brand p-[1.06rem] rounded-l-lg">
           <Icon />
         </div>
       )}
