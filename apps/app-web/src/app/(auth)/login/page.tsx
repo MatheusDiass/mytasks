@@ -20,7 +20,9 @@ export default function Login() {
         <p className="mb-15 text-text-muted">
           <strong>Management App</strong>
         </p>
-        <p className="mb-5">Login to your account</p>
+        <p className="mb-5">
+          <strong>Login to your account</strong>
+        </p>
 
         <Input placeholder="Email" Icon={EmailSvg} />
 
@@ -40,7 +42,7 @@ export default function Login() {
         <SocialMediaOptions label="Or Login with" />
 
         <div className="mt-5">
-          <span>Dont have an account?</span>
+          <span>Don&apos;t have an account?</span>
           <Link href="/register" className="text-brand ml-1">
             Sign Up
           </Link>
