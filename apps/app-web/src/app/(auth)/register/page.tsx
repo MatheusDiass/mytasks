@@ -20,7 +20,9 @@ export default function Register() {
         <p className="mb-15 text-text-muted">
           <strong>Management App</strong>
         </p>
-        <p className="mb-5">Create your account</p>
+        <p className="mb-5">
+          <strong>Create your account</strong>
+        </p>
 
         <Input placeholder="Username" Icon={UserSvg} />
 
