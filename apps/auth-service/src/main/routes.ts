@@ -1,6 +1,10 @@
 import { Input } from '@/app/use-cases/create-account';
 import { Route } from '../infra/http/http-server.types';
-import { CreateAccountFactory } from './factories';
+import { ConfirmAccountFactory, CreateAccountFactory } from './factories';
+import {
+  ConfirmAccountInput,
+  ConfirmAccountResponse,
+} from '@/app/use-cases/confirm-account';
 
 export const routes: Route[] = [
   {
@@ -8,6 +12,15 @@ export const routes: Route[] = [
     method: 'post',
     handler: async (req, _): Promise<void> => {
       await (await CreateAccountFactory.create()).handle(req.body as Input);
+    },
+  },
+  {
+    url: 'confirm-account',
+    method: 'post',
+    handler: async (req, _): Promise<ConfirmAccountResponse> => {
+      return await ConfirmAccountFactory.create().handle(
+        req.body as ConfirmAccountInput
+      );
     },
   },
 ];

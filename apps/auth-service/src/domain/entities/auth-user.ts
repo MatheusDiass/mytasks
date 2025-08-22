@@ -1,9 +1,4 @@
-import {
-  InvalidDateBirthError,
-  InvalidEmailError,
-  InvalidNameError,
-  InvalidPasswordError,
-} from '../errors';
+import { Errors } from '../errors';
 import { Props } from './auth-user.types';
 
 export class AuthUser {
@@ -29,7 +24,7 @@ export class AuthUser {
 
   private validateName(name: string): void {
     if (!name || name.trim().length < 2) {
-      throw new InvalidNameError();
+      throw Errors.invalidName();
     }
   }
 
@@ -37,7 +32,7 @@ export class AuthUser {
     const parsedDate = new Date(dateBirth);
 
     if (isNaN(parsedDate.getTime())) {
-      throw new InvalidDateBirthError();
+      throw Errors.invalidDateBirth();
     }
   }
 
@@ -55,7 +50,7 @@ export class AuthUser {
       hasInvalidHyphenUsage ||
       hasSpace
     ) {
-      throw new InvalidEmailError();
+      throw Errors.invalidEmail();
     }
   }
 
@@ -63,7 +58,7 @@ export class AuthUser {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
     if (!regex.test(password)) {
-      throw new InvalidPasswordError();
+      throw Errors.invalidPassword();
     }
   }
 

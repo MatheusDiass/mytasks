@@ -22,6 +22,7 @@ model User {
   id        String   @id @default(uuid(7)) @db.Uuid
   email     String   @unique
   password  String
+  isActive Boolean @map("is_active") @default(false)
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
 
@@ -36,6 +37,7 @@ model ConfirmationCode {
   code      String   @unique @db.Char(6)
   type      ConfirmationType
   expiresAt DateTime @map("expires_at") @db.Timestamptz()
+  isUsed Boolean @map("is_used") @default(false)
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz()
 

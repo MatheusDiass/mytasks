@@ -1,1 +1,2 @@
-export * from './email-already-exists';
+export * from './errors';
+export * from './types';
