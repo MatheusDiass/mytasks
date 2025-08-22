@@ -8,6 +8,7 @@ import (
 )
 
 type AppConfig struct {
+	Port       string
 	QueueUrl   string
 	DBServer   string
 	DBPort     string
@@ -24,6 +25,7 @@ func LoadEnv() *AppConfig {
 	}
 
 	return &AppConfig{
+		Port:       os.Getenv("PORT"),
 		QueueUrl:   os.Getenv("QUEUE_URL"),
 		DBServer:   os.Getenv("DB_SERVER"),
 		DBPort:     os.Getenv("DB_PORT"),

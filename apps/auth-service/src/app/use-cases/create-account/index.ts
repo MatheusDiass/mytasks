@@ -1,2 +1,2 @@
 export * from './create-account.usecase';
-export * from './create-account.types';
+export * from './create-account.type';

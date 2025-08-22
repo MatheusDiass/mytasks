@@ -6,7 +6,7 @@ import {
   Queue,
 } from '@/app/mocks';
 import { CreateAccountUseCase } from './create-account.usecase';
-import { EmailAlreadyExistsError } from '@/app/errors';
+import { AccountCode, Errors } from '../../errors';
 
 describe('Create Account UseCase', () => {
   let useCase: CreateAccountUseCase;
@@ -29,6 +29,8 @@ describe('Create Account UseCase', () => {
       password: 'MY@password@123',
     };
 
-    expect(useCase.execute(authUser)).rejects.Throw(EmailAlreadyExistsError);
+    expect(useCase.execute(authUser)).rejects.toThrow(
+      Errors.accountAlreadyExists()
+    );
   });
 });

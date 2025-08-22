@@ -8,11 +8,15 @@ import {
   CreateConfirmationCodeRepo,
 } from '@/infra/db/repos';
 import { CodeGenerator } from '@/infra/provider';
+import { HttpClientAdapter } from '@/infra/http-client/http-client.adapter';
+import { UserService } from '@/infra/services';
 
 export class CreateAccountFactory {
   private constructor() {}
 
   static async create(): Promise<CreateAccountController> {
+    const httpClient = HttpClientAdapter.instance();
+    const userService = new UserService(httpClient);
     const checkEmailExistsRepo = new CheckEmailExistsRepo();
     const createAccountRepo = new CreateAccountRepo();
     const codeGeneratorProvider = new CodeGenerator();
@@ -24,6 +28,7 @@ export class CreateAccountFactory {
       createAccountRepo,
       codeGeneratorProvider,
       createConfirmationCodeRepo,
+      userService,
       queue
     );
 
