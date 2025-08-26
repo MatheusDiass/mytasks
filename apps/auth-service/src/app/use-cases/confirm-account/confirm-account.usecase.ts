@@ -29,6 +29,7 @@ export class ConfirmAccountUseCase
     });
 
     if (!confirmationData) throw Errors.confirmationCodeNotFound();
+    if (confirmationData.isUsed) throw Errors.confirmationCodeAlreadyUsed();
 
     const currentDate = new Date();
     if (confirmationData.expiresAt.getTime() < currentDate.getTime())

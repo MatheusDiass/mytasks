@@ -4,12 +4,24 @@ import { ConfirmAccountInput } from './confirm-account.type';
 import {
   IConfirmAccountRepo,
   IGetConfirmationCodeRepo,
+  GetConfirmationCodeRepoOutput,
 } from '@/domain/interfaces';
-import {
-  CreateUserInput,
-  IUserService,
-} from '@/domain/interfaces/services/user.service';
-import { UserDto } from '@/domain/dtos';
+import { IUserService } from '@/domain/interfaces/services/user.service';
+
+const buildConfirmationCode = (
+  override: Partial<GetConfirmationCodeRepoOutput> = {}
+): GetConfirmationCodeRepoOutput => {
+  return {
+    id: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
+    userId: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
+    code: 'MK7TI0',
+    type: 'ACTIVATION',
+    isUsed: false,
+    expiresAt: new Date(Date.now() + 60_000),
+    createdAt: new Date(),
+    ...override,
+  };
+};
 
 describe('Confirm Account UseCase', () => {
   const input: ConfirmAccountInput = {
@@ -60,17 +72,27 @@ describe('Confirm Account UseCase', () => {
     );
   });
 
+  it('should throw confirmation code already used if confirmation code is used', () => {
+    const { sut, getConfirmationCodeRepo } = makeSut();
+
+    getConfirmationCodeRepo.execute.mockResolvedValue(
+      buildConfirmationCode({ isUsed: true })
+    );
+
+    expect(sut.execute(input)).rejects.toThrow(
+      Errors.confirmationCodeAlreadyUsed()
+    );
+  });
+
   it('should throw an expires confirmation code if confirmation code expires', () => {
     const { sut, getConfirmationCodeRepo } = makeSut();
 
-    getConfirmationCodeRepo.execute.mockResolvedValue({
-      id: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
-      userId: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
-      code: 'MK7TI0',
-      type: 'ACTIVATION',
-      expiresAt: new Date(Date.now() - 1),
-      createdAt: new Date(Date.now() - 1),
-    });
+    getConfirmationCodeRepo.execute.mockResolvedValue(
+      buildConfirmationCode({
+        expiresAt: new Date(Date.now() - 1),
+        createdAt: new Date(Date.now() - 1),
+      })
+    );
 
     expect(sut.execute(input)).rejects.toThrow(
       Errors.confirmationCodeExpires()
@@ -85,14 +107,7 @@ describe('Confirm Account UseCase', () => {
       code: 'DA7UI0',
     };
 
-    getConfirmationCodeRepo.execute.mockResolvedValue({
-      id: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
-      userId: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
-      code: 'MK7TI0',
-      type: 'ACTIVATION',
-      expiresAt: new Date(Date.now() + 1),
-      createdAt: new Date(Date.now() + 1),
-    });
+    getConfirmationCodeRepo.execute.mockResolvedValue(buildConfirmationCode());
 
     expect(sut.execute(input)).rejects.toThrow(
       Errors.confirmationCodeInvalid()
@@ -107,14 +122,11 @@ describe('Confirm Account UseCase', () => {
       code: 'DA7UI0',
     };
 
-    getConfirmationCodeRepo.execute.mockResolvedValue({
-      id: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
-      userId: '0197fc72-ba4d-7532-8c88-e9d3a6d853f9',
-      code: 'DA7UI0',
-      type: 'ACTIVATION',
-      expiresAt: new Date(Date.now() + 1),
-      createdAt: new Date(Date.now() + 1),
-    });
+    getConfirmationCodeRepo.execute.mockResolvedValue(
+      buildConfirmationCode({
+        code: 'DA7UI0',
+      })
+    );
 
     userService.getUser.mockResolvedValue(undefined);
 

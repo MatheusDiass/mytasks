@@ -20,6 +20,7 @@ export class GetConfirmationCodeRepo implements IGetConfirmationCodeRepo {
         userId: true,
         code: true,
         type: true,
+        isUsed: true,
         expiresAt: true,
         createdAt: true,
       },

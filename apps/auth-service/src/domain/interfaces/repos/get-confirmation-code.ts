@@ -10,6 +10,7 @@ export type GetConfirmationCodeRepoOutput = {
   userId: string;
   code: string;
   type: ConfirmationType;
+  isUsed: boolean;
   expiresAt: Date;
   createdAt: Date;
 };

@@ -1,5 +1,13 @@
-import { AccountData } from './auth.type';
+import {
+  AccountData,
+  ConfirmAccountData,
+  ConfirmAccountResponse,
+} from './auth.type';
 
 export interface ICreateAccountRepo {
-  execute(user: AccountData): Promise<void>;
+  execute(data: AccountData): Promise<void>;
+}
+
+export interface IConfirmAccountRepo {
+  execute(data: ConfirmAccountData): Promise<ConfirmAccountResponse>;
 }
