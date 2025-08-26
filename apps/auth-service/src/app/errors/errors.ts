@@ -27,6 +27,12 @@ export const Errors = {
       'Confirmation code invalid',
       StatusCode.BadRequest
     ),
+  confirmationCodeAlreadyUsed: () =>
+    new AppError(
+      ConfirmationCode.ALREADY_USED,
+      'Confirmation code already used',
+      StatusCode.BadRequest
+    ),
   userNotFound: () =>
     new AppError(
       ConfirmationCode.NOT_FOUND,

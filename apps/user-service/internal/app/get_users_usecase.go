@@ -5,10 +5,10 @@ import (
 )
 
 type GetUsersOutput struct {
-	Id        string
-	Name      string
-	DateBirth string
-	Email     string
+	Id        string `json:"id"`
+	Name      string `json:"name"`
+	DateBirth string `json:"dateBirth"`
+	Email     string `json:"email"`
 }
 
 type GetUsersUseCase struct {
