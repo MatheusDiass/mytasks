@@ -7,17 +7,18 @@ import { prisma } from '../database-client';
 export class ConfirmAccountRepo implements IConfirmAccountRepo {
   async execute(input: ConfirmAccountRepoInput): Promise<void> {
     await prisma.$transaction(async (tx) => {
-      await tx.user.update({
-        where: { email: input.email },
-        data: {
-          isActive: true,
-        },
-      });
-
-      await tx.confirmationCode.update({
+      const { userId } = await tx.confirmationCode.update({
         where: { id: input.confirmationCodeId },
         data: {
           isUsed: true,
+        },
+        select: { userId: true },
+      });
+
+      await tx.user.update({
+        where: { id: userId },
+        data: {
+          isActive: true,
         },
       });
     });

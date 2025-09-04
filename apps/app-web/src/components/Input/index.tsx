@@ -4,7 +4,12 @@ import { InputProps } from './types';
 import EyeOpen from '@/assets/icons/eye-open.svg';
 import EyeClosed from '@/assets/icons/eye-close.svg';
 
-export const Input: FC<InputProps> = ({ Icon, placeholder, isPassword }) => {
+export const Input: FC<InputProps> = ({
+  Icon,
+  placeholder,
+  isPassword,
+  onChange,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -27,6 +32,7 @@ export const Input: FC<InputProps> = ({ Icon, placeholder, isPassword }) => {
           type={type}
           placeholder={placeholder}
           className={`w-full ${paddingClass} border-1 border-brand-300 rounded-r-lg pl-4 pr-10 h-12 focus:outline-none focus:border-brand focus:ring-brand`}
+          onChange={(e) => onChange(e.target.value)}
         />
 
         {isPassword && (

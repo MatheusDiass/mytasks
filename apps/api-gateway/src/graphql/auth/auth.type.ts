@@ -18,9 +18,6 @@ export class AccountData {
 @InputType()
 export class ConfirmAccountData {
   @Field(() => String)
-  readonly email: string;
-
-  @Field(() => String)
   readonly code: string;
 }
 

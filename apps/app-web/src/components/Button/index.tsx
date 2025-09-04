@@ -1,6 +1,7 @@
 'use client';
 import { FC } from 'react';
 import { ButtonProps, ButtonType } from './types';
+import { Loading } from '../Loading';
 
 export const Button: FC<ButtonProps> = (props) => {
   const isDisabled = props.type === ButtonType.Disable;
@@ -14,10 +15,10 @@ export const Button: FC<ButtonProps> = (props) => {
 
   return (
     <button
-      className={`${buttonTypeClass} rounded-lg p-3 pr-10 pl-10 font-medium w-full`}
+      className={`${buttonTypeClass} rounded-lg p-3 pr-10 pl-10 font-medium w-full flex justify-center`}
       onClick={props.onClick}
     >
-      {props.text}
+      {!props.isLoading ? props.text : <Loading />}
     </button>
   );
 };

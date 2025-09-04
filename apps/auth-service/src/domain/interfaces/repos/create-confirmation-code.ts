@@ -8,5 +8,5 @@ export type CreateConfirmationCodeInput = {
 };
 
 export interface ICreateConfirmationCodeRepo {
-  execute(input: CreateConfirmationCodeInput): Promise<void>;
+  execute(input: CreateConfirmationCodeInput): Promise<string>;
 }

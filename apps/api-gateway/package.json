@@ -25,7 +25,10 @@
     "@": "dist/src"
   },
   "dependencies": {
-    "apollo-server": "^3.13.0",
+    "@apollo/server": "^4.12.2",
+    "@as-integrations/fastify": "^3.0.0",
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/cors": "^11.1.0",
     "axios": "^1.10.0",
     "graphql": "^16.11.0",
     "reflect-metadata": "^0.2.2",

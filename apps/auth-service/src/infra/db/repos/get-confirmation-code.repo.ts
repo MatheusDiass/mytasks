@@ -12,7 +12,7 @@ export class GetConfirmationCodeRepo implements IGetConfirmationCodeRepo {
     return prisma.confirmationCode.findFirst({
       where: {
         type: input.confirmationType,
-        user: { email: input.email },
+        id: input.confirmationCodeId,
       },
       orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
       select: {

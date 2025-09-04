@@ -5,7 +5,13 @@ import { HttpClient } from '../http/http-client.adapter';
 export class CreateAccountRepo implements ICreateAccountRepo {
   constructor(private readonly httpClient: HttpClient) {}
 
-  async execute(account: AccountData): Promise<void> {
-    await this.httpClient.post<AccountData, void>('auth', '/accounts', account);
+  async execute(account: AccountData): Promise<string> {
+    const confirmationCodeId = await this.httpClient.post<AccountData, string>(
+      'auth',
+      '/accounts',
+      account
+    );
+
+    return confirmationCodeId;
   }
 }

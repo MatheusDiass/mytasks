@@ -1,7 +1,7 @@
 import { ConfirmationType } from '@prisma/client';
 
 export type GetConfirmationCodeRepoInput = {
-  email: string;
+  confirmationCodeId: string;
   confirmationType: ConfirmationType;
 };
 
