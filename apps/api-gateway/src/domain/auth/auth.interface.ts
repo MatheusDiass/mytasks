@@ -5,9 +5,14 @@ import {
 } from './auth.type';
 
 export interface ICreateAccountRepo {
-  execute(data: AccountData): Promise<void>;
+  execute(data: AccountData): Promise<string>;
 }
 
+export type ConfirmAccountRepoData = {
+  code: string;
+  confirmationCodeId: string;
+};
+
 export interface IConfirmAccountRepo {
-  execute(data: ConfirmAccountData): Promise<ConfirmAccountResponse>;
+  execute(data: ConfirmAccountRepoData): Promise<ConfirmAccountResponse>;
 }

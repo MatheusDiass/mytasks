@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-server';
+import { GraphQLError } from 'graphql';
 import axios from 'axios';
 import { MiddlewareFn } from 'type-graphql';
 import { GraphQLContext } from './graphql.type';
@@ -16,6 +16,8 @@ export const ErrorMiddleware: MiddlewareFn<GraphQLContext> = async (
 
     const code = context.errorCode || 'INTERNAL_ERROR';
 
-    throw new ApolloError(message, code);
+    throw new GraphQLError(message, {
+      extensions: { code },
+    });
   }
 };

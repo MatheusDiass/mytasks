@@ -24,7 +24,7 @@ export class ConfirmAccountUseCase
 
   async execute(input: ConfirmAccountInput): Promise<ConfirmAccountResponse> {
     const confirmationData = await this.getConfirmationCodeRepo.execute({
-      email: input.email,
+      confirmationCodeId: input.confirmationCodeId,
       confirmationType: ConfirmationType.ACTIVATION,
     });
 
@@ -45,7 +45,6 @@ export class ConfirmAccountUseCase
     }
 
     await this.confirmAccountRepo.execute({
-      email: input.email,
       confirmationCodeId: confirmationData.id,
     });
 

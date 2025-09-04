@@ -6,5 +6,6 @@ export enum ButtonType {
 export type ButtonProps = {
   text: string;
   type?: ButtonType;
+  isLoading?: boolean;
   onClick?: () => void;
 };

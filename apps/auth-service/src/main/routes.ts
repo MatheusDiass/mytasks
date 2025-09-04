@@ -10,8 +10,10 @@ export const routes: Route[] = [
   {
     url: 'accounts',
     method: 'post',
-    handler: async (req, _): Promise<void> => {
-      await (await CreateAccountFactory.create()).handle(req.body as Input);
+    handler: async (req, _): Promise<string> => {
+      return await (
+        await CreateAccountFactory.create()
+      ).handle(req.body as Input);
     },
   },
   {

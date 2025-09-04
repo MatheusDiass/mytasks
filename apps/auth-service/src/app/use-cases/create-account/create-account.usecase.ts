@@ -1,9 +1,5 @@
 import { IExecutable } from '@/app/interfaces';
-import {
-  Input,
-  UserQueueInput,
-  NotificationQueueInput,
-} from './create-account.type';
+import { Input, NotificationQueueInput } from './create-account.type';
 import { AuthUser } from '@/domain/entities';
 import {
   ICheckEmailExistsRepo,
@@ -15,7 +11,7 @@ import {
 import { Errors } from '../../errors';
 import { IUserService } from '@/domain/interfaces/services/user.service';
 
-export class CreateAccountUseCase implements IExecutable<Input, void> {
+export class CreateAccountUseCase implements IExecutable<Input, string> {
   constructor(
     private readonly checkEmailExistsRepo: ICheckEmailExistsRepo,
     private readonly createAccountRepo: ICreateAccountRepo,
@@ -25,7 +21,7 @@ export class CreateAccountUseCase implements IExecutable<Input, void> {
     private readonly queue: IQueue
   ) {}
 
-  async execute(input: Input): Promise<void> {
+  async execute(input: Input): Promise<string> {
     const authUser = new AuthUser(input);
 
     const emailExists = await this.checkEmailExistsRepo.execute(authUser.email);
@@ -37,7 +33,7 @@ export class CreateAccountUseCase implements IExecutable<Input, void> {
     const accountId = await this.createAccountRepo.execute(authUser);
 
     const code = this.codeGenerator.generate(6);
-    await this.createConfirmationCodeRepo.execute({
+    const confirmationCodeId = await this.createConfirmationCodeRepo.execute({
       accountId,
       code,
       type: 'ACTIVATION',
@@ -60,5 +56,7 @@ export class CreateAccountUseCase implements IExecutable<Input, void> {
         confirmationCode: code,
       },
     });
+
+    return confirmationCodeId;
   }
 }

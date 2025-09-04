@@ -1,7 +1,7 @@
 import { UserDto } from '@/domain/dtos';
 
 export type ConfirmAccountInput = {
-  email: string;
+  confirmationCodeId: string;
   code: string;
 };
 

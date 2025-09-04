@@ -23,7 +23,7 @@ export const Errors = {
     ),
   confirmationCodeInvalid: () =>
     new AppError(
-      ConfirmationCode.EXPIRED,
+      ConfirmationCode.INVALID,
       'Confirmation code invalid',
       StatusCode.BadRequest
     ),

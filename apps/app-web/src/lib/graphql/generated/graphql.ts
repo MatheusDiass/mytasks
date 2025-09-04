@@ -23,9 +23,25 @@ export type AccountData = {
   password: Scalars['String']['input'];
 };
 
+export type ConfirmAccountData = {
+  code: Scalars['String']['input'];
+};
+
+export type ConfirmAccountResponse = {
+  __typename?: 'ConfirmAccountResponse';
+  token: Scalars['String']['output'];
+  user: User;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  confirmAccount: ConfirmAccountResponse;
   createAccount: Scalars['Boolean']['output'];
+};
+
+
+export type MutationConfirmAccountArgs = {
+  data: ConfirmAccountData;
 };
 
 
@@ -38,6 +54,13 @@ export type Query = {
   healthCheck: Scalars['String']['output'];
 };
 
+export type User = {
+  __typename?: 'User';
+  email: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
 export type CreateAccountMutationVariables = Exact<{
   data: AccountData;
 }>;
@@ -45,5 +68,13 @@ export type CreateAccountMutationVariables = Exact<{
 
 export type CreateAccountMutation = { __typename?: 'Mutation', createAccount: boolean };
 
+export type ConfirmAccountMutationVariables = Exact<{
+  data: ConfirmAccountData;
+}>;
+
+
+export type ConfirmAccountMutation = { __typename?: 'Mutation', confirmAccount: { __typename?: 'ConfirmAccountResponse', token: string, user: { __typename?: 'User', id: string, name: string, email: string } } };
+
 
 export const CreateAccountDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateAccount"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"data"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AccountData"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createAccount"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"Variable","name":{"kind":"Name","value":"data"}}}]}]}}]} as unknown as DocumentNode<CreateAccountMutation, CreateAccountMutationVariables>;
+export const ConfirmAccountDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ConfirmAccount"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"data"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ConfirmAccountData"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"confirmAccount"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"Variable","name":{"kind":"Name","value":"data"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"token"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]}}]} as unknown as DocumentNode<ConfirmAccountMutation, ConfirmAccountMutationVariables>;

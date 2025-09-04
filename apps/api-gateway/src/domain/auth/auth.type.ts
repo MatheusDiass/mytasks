@@ -6,8 +6,8 @@ export type AccountData = {
 };
 
 export type ConfirmAccountData = {
-  email: string;
   code: string;
+  confirmationCodeIdEncrypted?: string;
 };
 
 export type User = {

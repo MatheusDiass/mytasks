@@ -4,7 +4,7 @@ import { AuthUser } from '@/domain/entities';
 
 export class CreateAccountRepo implements ICreateAccountRepo {
   async execute(user: AuthUser): Promise<string> {
-    const accountCreated = await prisma.user.create({
+    const { id } = await prisma.user.create({
       data: {
         email: user.email,
         password: user.password,
@@ -15,6 +15,6 @@ export class CreateAccountRepo implements ICreateAccountRepo {
       },
     });
 
-    return accountCreated.id;
+    return id;
   }
 }
