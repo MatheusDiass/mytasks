@@ -1,12 +1,13 @@
 import { BottomNav } from '@/components/BottomNav';
 
-export default function Home() {
+export default function WithNavLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <p className="text-2xl">
-        <strong>My</strong>Tasks
-      </p>
-
+      {children}
       <BottomNav />
     </div>
   );
