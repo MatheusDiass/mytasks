@@ -3,7 +3,7 @@ export enum ButtonType {
   Destructive = 'destructive',
 }
 
-export type ButtonProps = {
+export type Props = {
   text: string;
   type?: ButtonType;
   isLoading?: boolean;

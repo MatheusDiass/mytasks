@@ -1,9 +1,9 @@
 'use client';
 import { FC } from 'react';
-import { ButtonProps, ButtonType } from './types';
+import { Props, ButtonType } from './types';
 import { Loading } from '../Loading';
 
-export const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<Props> = (props) => {
   const isDisabled = props.type === ButtonType.Disable;
 
   const buttonTypeClass = (() => {
